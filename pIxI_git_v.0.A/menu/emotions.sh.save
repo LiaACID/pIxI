@@ -1,0 +1,59 @@
+menu()
+{
+echo Stats:
+echo '[]'
+
+#calendar 
+echo Tomorrow
+echo '[]'
+echo Today
+echo '[]'
+#emote
+echo $1
+echo '[1][2][3]'
+#case
+#*1*)	
+#*2*)
+#*3*)
+}
+
+emo()
+{
+clear
+echo $1
+sleep 2
+}
+
+rest()
+{
+#while true
+#do
+emo "(◕ᴥ◕ʋ)"
+sleep 2
+emo "(❍ᴥ❍ʋ)"
+sleep 2
+#done
+}
+
+starting()
+{
+emo "☜(⌒▽⌒)☞"
+sleep 2
+emo "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧"
+sleep 2
+emo "٩( ๑╹ ꇴ╹)۶"
+sleep 2
+}
+
+echo huh?
+
+echo Starting..
+
+while true
+do
+menu 
+sleep 2
+
+
+
+done

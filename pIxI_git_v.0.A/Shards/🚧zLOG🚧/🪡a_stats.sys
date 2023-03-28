@@ -1,0 +1,127 @@
+cd ..
+
+echo
+SortByCommon(){
+	 
+	sort U_log | uniq -c | sort -rn | head -n 12 | sed -E 's/^ *[0-9]+ //g'
+	
+	      }
+echo Most Common "ID's":
+#SortByCommon	     
+echo
+
+SBC=$(SortByCommon)
+
+	echo $SBC
+	echo
+	
+	
+#Get Amunt Of Occourances
+
+GetAmount(){
+	sort U_log | uniq -c | sort -rn | sed 's/[^0-9]*//' | cut -f1 -d' '
+	
+	      }
+
+GA=$(GetAmount)
+echo
+echo All Amounts
+#echo $GA
+echo
+
+GetAmount>GA.log
+
+
+
+#Most common patterns
+#echo All Numbers: 
+#echo
+#cat U_log
+echo 
+#Read Into Array
+echo Array: 
+readarray -t logarray < GA.log
+echo
+printf '%s\n' "${logarray[@]}"
+
+#Get Difference To the Next Array Element By Division
+#While Logarray 2 is Smaller than All lines in source file, or total count of array items.
+#Difference 	=	logarray[$1]	/	logarray[$2]
+
+echo 
+echo Difference: 
+echo
+C=$( wc -l < GA.log) 
+echo $C
+Steps=1
+A=0
+B="$(($A+$Steps))"
+#echo $B
+while [  $B -le $C  ]
+do
+	#echo $A $B
+	ArrA=${logarray[$A]}
+	ArrB=${logarray[$B]}
+	echo $ArrA
+	#Diff=scale=2 ; $ArrA / $ArrB | bc
+	echo "is"
+	echo "scale=2 ; $ArrA / $ArrB" | bc
+	echo "scale=2 ; $ArrA / $ArrB" | bc >>diff.log
+	#echo $Diff
+	#vid(){
+	#$vis=$( perl -E 'say "-" x $ArrA')
+	#$echo vis 
+	#echo 
+	#}
+	echo to
+	echo $ArrB
+	echo
+	(( A++ ))
+	B="$(($A+$Steps))"
+done
+
+
+diffrow=`cat diff.log`
+
+#VID=$(vid)
+
+echo "Most Common:"
+echo $SBC
+echo "By Amount:"
+echo $GA
+echo "With A Difference Of:"
+echo $diffrow
+echo
+#echo "Visuallly thats:"
+#echo $VID
+
+
+
+#Calculate Percentages
+#$diffrow to Array
+# 100/ ArrSum ..
+
+#sum
+awk '{ sum += $1 } END { print sum }' diff.log
+readarray -t diffarray < diff.log
+
+G=0
+A=0
+ssum=$(  awk '{ sum += $1 } END { print sum }' diff.log  )
+while [  "$G" -le "$ssum"  ]
+do
+	ArrEE=${diffarray[$A]}
+	echo $ArrEE
+	AAA=100
+	#B="$(($A+$Steps))"
+	Base=$((  $AAA / $ssum  ))
+	echo $Base
+	#End=$((  $ArrEE * $Base  ))
+	Result=$((ArrEE* Base))
+	echo $Result
+	(( G++ ))
+	(( A++ ))
+done
+rm diff.log
+#get Complex numberrunning to work!
+

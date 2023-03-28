@@ -1,0 +1,8 @@
+
+#Pipe=$(</dev/stdin)
+tts --text "Can you repeat that?" --out_path /home/lia/huh/Tits/sorry.wav
+#play $Pipe.wav
+
+#sudo apt install libsox-fmt-all
+#sudo apt install sox
+#https://askubuntu.com/questions/920539/how-do-you-play-a-sound-from-the-terminal
